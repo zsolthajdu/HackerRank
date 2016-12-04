@@ -18,7 +18,7 @@ node * lca(node * root, int v1,int v2)
 	while( true ) {
 		if( v1 == curr->data || v2 == curr->data )
 		     return curr;
-		if( v1 < curr->data && v2 > curr->data )
+		if( (v1 < curr->data && v2 > curr->data ) ||  (v1 > curr->data && v2 < curr->data) )
 			return curr;
 		if( v1 < curr->data )
 			curr = curr->left;
