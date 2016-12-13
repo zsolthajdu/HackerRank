@@ -7,4 +7,4 @@ add_executable( Equal Equal.cpp )
 add_executable( thrones thrones.cpp )
 add_executable( richie richie.cpp )
 add_executable( AVLtree AVLtree.cpp )
-
+add_executable( FlippingMatrix FlippingMatrix.cpp )
