@@ -8,3 +8,5 @@ add_executable( thrones thrones.cpp )
 add_executable( richie richie.cpp )
 add_executable( AVLtree AVLtree.cpp )
 add_executable( FlippingMatrix FlippingMatrix.cpp )
+add_executable( MaxSubarray dynamic_programming/MaxSubarray.cpp )
+
