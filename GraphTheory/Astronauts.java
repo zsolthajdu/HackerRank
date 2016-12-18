@@ -3,7 +3,7 @@ import java.util.*;
 
 // https://www.hackerrank.com/challenges/journey-to-the-moon
 
-public class Solution {
+public class Astronauts {
    public static void main(String[] args) throws Exception{
         BufferedReader bfr = new BufferedReader(new InputStreamReader(System.in));
         String[] temp = bfr.readLine().split(" ");
