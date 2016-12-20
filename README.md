@@ -1,6 +1,6 @@
 # HackerRank
 
-My solutions to some of the exercises on https://www.hackerrank.com/
+My solutions to some of the exercises on HackerRank.com  
 Follow the excitement at http://www.hackerrank.com/zsolthajdu
 
 To build the executables you'll need the CMake package.
