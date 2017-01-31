@@ -13,4 +13,4 @@ add_executable( FlippingMatrix FlippingMatrix.cpp )
 add_executable( MaxSubarray dynamic_programming/MaxSubarray.cpp )
 add_executable( SherlockAndAnagrams strings/SherlockAndAnagrams.cpp )
 add_executable( EvenTree GraphTheory/EvenTree.cpp )
-
+add_executable( Pairs Search/Pairs.cpp )
