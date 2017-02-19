@@ -15,4 +15,5 @@ add_executable( SherlockAndAnagrams strings/SherlockAndAnagrams.cpp )
 add_executable( EvenTree GraphTheory/EvenTree.cpp )
 add_executable( Pairs Search/Pairs.cpp )
 add_executable( CountLuck Search/countluck.cpp )
+add_executable( BFS GraphTheory/BFS.cpp )
 
