@@ -34,78 +34,71 @@ using namespace std;
 
 int main( int argc, char** argv )
 { 
-    int N, I;
+    auto nAstronauts = 0, nPairs = 0;
 	ifstream inf;
 
 	inf.open(argv[1], ifstream::in);
 
-	inf >> N >> I;
+	inf >> nAstronauts >> nPairs;
 	
-	int	c;
-
-	vector<vector<int> > pairs(N);
+	vector<vector<int> > lists(nAstronauts);
 	vector< set<int> > countries;
 
-	for (int i = 0; i < I; ++i) {
+	for (int i = 0; i < nPairs; ++i) {
         int a, b;
         inf >> a >> b;
-		  pairs[a].push_back(b);
-		  pairs[b].push_back(a);
+        lists[a].push_back(b);
+        lists[b].push_back(a);
 	}
 
-	if( pairs.empty() ) {
+	if( lists.empty() ) {
 		cout << 0 << endl;
 		return 0;
 	}
 
-	vector<vector<int> >::iterator ai;
 	queue< int > q;
 	int currAstr = 0;
-	long long loneAstronauts = 0;
 
 	// Sort astronauts into sets
 	// representing countries
-	for( ai=pairs.begin() ; ai != pairs.end() ; ++ai, currAstr++ ) {
+	for( const auto & ai : lists ) {
 		set< int > country;
-		int x = 0;
 
-		if( ai->size() != 0 ) {
-			//if( ai->at(0) == -1 )
-			//	continue;
+		if( !ai.empty() ) {
 			q.push( currAstr );
 			country.insert( currAstr );
 			while( !q.empty() ) {
-				x = q.front();
+				auto x = q.front();
 				q.pop();
 
-				if( pairs[x].empty() )// || -1==pairs[x].at(0) )
-					continue;
-				int j;
-				for( j=0 ; j<pairs[x].size() ; j++ ) {
-					q.push( pairs[x].at(j) );
-					country.insert( pairs[x].at(j) );
+				if( !lists[x].empty() ) {
+					for( auto & a : lists[x] ) {
+						q.push( a );
+						country.insert( a );
+					}
+					lists[x].clear();
 				}
-				pairs[x].clear();
-				//pairs[x].push_back(-1);
 			}
 			countries.push_back( country );
 		}
+		currAstr++;
 	}
 
-	long long allAst = 0;
-	for( c = 0 ; c< countries.size() ; c++ )
-		allAst += countries[c].size();
+	long long pairedAstronauts = 0;
+	// Add up sizes of each country vectors. This will be the number
+	// of astronauts from countries with more than one astronaut
+	for( const auto & country : countries )
+		pairedAstronauts += country.size();
 
-	loneAstronauts = N - allAst;
+	// There may be countries with just one astronaut
+	long long loneAstronauts = nAstronauts - pairedAstronauts;
 
 	long long result = 0;
 
-	/** Write code to compute the result using N,I,pairs **/
-
-	// This is pairs from coutnries with multiple astronauts
-	for( c=0 ; c<countries.size()-1 ; c++ ) {
+	// This is pairs from countries with multiple astronauts
+	for( auto c=0 ; c<countries.size()-1 ; c++ ) {
 		 int nMen = countries[c].size();
-		 for( int j = c+1; j < countries.size() ; j++ )
+		 for( auto j = c+1; j < countries.size() ; j++ )
 			 result += nMen * countries[j].size();
 	}
 
@@ -113,8 +106,8 @@ int main( int argc, char** argv )
 	if( loneAstronauts > 0 ) {
 		// cerr << "There are " << loneAstronauts << " lone astronauts." << endl;
 		// Pairs of lone astronauts with regular countries' astronauts
-		for( c=0 ; c<countries.size() ; c++ )
-			result += loneAstronauts*countries[c].size();
+		for( const auto & country : countries )
+			result += loneAstronauts * country.size();
 
 		// Pairs of LONE astronauts amongst themselves
 		result += loneAstronauts * (loneAstronauts-1)  / 2;
