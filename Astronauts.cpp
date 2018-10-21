@@ -28,27 +28,23 @@
 
 using namespace std;
 
-//
-// Az atro2.txt teszt adatra a jo eredmeny : 4999949998
-//
-
 int main( int argc, char** argv )
 { 
-    auto nAstronauts = 0, nPairs = 0;
+	auto nAstronauts = 0, nPairs = 0;
 	ifstream inf;
 
 	inf.open(argv[1], ifstream::in);
 
 	inf >> nAstronauts >> nPairs;
-	
+
 	vector<vector<int> > lists(nAstronauts);
 	vector< set<int> > countries;
 
-	for (int i = 0; i < nPairs; ++i) {
-        int a, b;
-        inf >> a >> b;
-        lists[a].push_back(b);
-        lists[b].push_back(a);
+	for( auto i = 0; i < nPairs; ++i) {
+		int a, b;
+		inf >> a >> b;
+		lists[a].push_back(b);
+		lists[b].push_back(a);
 	}
 
 	if( lists.empty() ) {
