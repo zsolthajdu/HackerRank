@@ -1,5 +1,5 @@
 project(HackerRank)
-cmake_minimum_required(VERSION 3.2)
+cmake_minimum_required(VERSION 3.8)
 
 add_executable( GridlandMetro  GridlandMetro.cpp )
 add_executable( Astronauts  Astronauts.cpp )
@@ -16,6 +16,6 @@ add_executable( EvenTree GraphTheory/EvenTree.cpp )
 add_executable( Pairs Search/Pairs.cpp )
 add_executable( CountLuck Search/countluck.cpp )
 add_executable( BFS GraphTheory/BFS.cpp )
-add_executable( CountingValleys CountingValleys.cpp )
+add_executable( CountingValleys Algorithms/CountingValleys.cpp )
 add_executable( NewYearChaos NewYearChaos.cpp )
-
+add_executable( MagicSquare Algorithms/MagicSquare.cpp )
